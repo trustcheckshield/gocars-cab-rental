@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#121212">
 <title>GoCars – Car Rental App</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -59,6 +60,48 @@
       <p class="owner">GoCars operates for <b>Sagore Drive &amp; Ride Cabs</b><br>Owner: Ashutosh Sharma<br><i>Your Journey, Our Responsibility</i></p>
     </section>
 
+    <section id="profile" class="screen">
+      <h2>My <span class="go">Account</span></h2>
+
+      <div id="authBox">
+        <div class="seg">
+          <button type="button" class="seg-btn active" data-auth="signup">Sign Up</button>
+          <button type="button" class="seg-btn" data-auth="login">Log In</button>
+        </div>
+        <p class="msg" id="authMsg" role="alert" hidden></p>
+
+        <form id="stepEmail" novalidate>
+          <label id="nameWrap">Full name
+            <input id="aName" type="text" autocomplete="name" placeholder="Your name">
+          </label>
+          <label>Email ID
+            <input id="aEmail" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com">
+          </label>
+          <button class="cta" type="submit" id="sendBtn">Send OTP</button>
+        </form>
+
+        <form id="stepOtp" novalidate hidden>
+          <p class="sub" id="otpInfo"></p>
+          <div class="demo" id="demoNote" hidden></div>
+          <label>Enter OTP code
+            <input id="aOtp" type="text" inputmode="numeric" maxlength="8" autocomplete="one-time-code" placeholder="000000">
+          </label>
+          <button class="cta" type="submit">Verify &amp; Continue</button>
+          <button type="button" class="linkbtn" id="otpBack">← Change email</button>
+        </form>
+      </div>
+
+      <div id="profileBox" hidden>
+        <div class="pcard">
+          <div class="avatar" id="pAvatar">G</div>
+          <h3 id="pName"></h3>
+          <p id="pEmail"></p>
+          <span class="status">✓ Verified · Logged in</span>
+        </div>
+        <button type="button" class="cta ghost" id="logoutBtn">Logout</button>
+      </div>
+    </section>
+
   </main>
 
   <nav class="bottom" aria-label="Main">
@@ -66,6 +109,7 @@
     <button class="tab" data-tab="services"><i>🧰</i><span>Services</span></button>
     <button class="tab" data-tab="cars"><i>🚗</i><span>Cars</span></button>
     <button class="tab" data-tab="contact"><i>☎️</i><span>Contact</span></button>
+    <button class="tab" data-tab="profile"><i>👤</i><span>Account</span></button>
   </nav>
 </div>
 <div class="modal" id="modal" aria-hidden="true">
